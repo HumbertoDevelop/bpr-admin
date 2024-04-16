@@ -41,6 +41,7 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
     
     localStorage.setItem('token', 'd');
     setUser({email: 'd', password: 'd', token: 'd'});
+    router.push("/");
   };
 
   const logout = () => {

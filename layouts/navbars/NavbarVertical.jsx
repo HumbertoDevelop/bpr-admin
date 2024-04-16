@@ -114,7 +114,7 @@ const NavbarVertical = (props) => {
               return (
                 <Card bsPrefix="nav-item" key={index}>
                   {/* group title item */}
-                  <div className="navbar-heading">{menu.title}</div>
+                  <Link href={menu.link} className="navbar-heading">{menu.title}</Link>
                   {/* end of group title item */}
                 </Card>
               );
