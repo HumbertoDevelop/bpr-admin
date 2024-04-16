@@ -9,20 +9,32 @@ export default function FormPlayerModalEdit(props) {
   const hasMounted = useMounted();
   const [show, setShow] = useState(false);
   const handleClose = useCallback(() => setShow(!show), [show]);
-  const handleShow = useCallback(() => setShow(!show), [show]);
 
-  // const handlePrivado = (event) => {
-  //   const checkbox = event.target;
-  //   const isChecked = checkbox.checked;
+  const handleActive = (event) => {
+    const checkbox = event.target;
+    const isChecked = checkbox.checked;
 
-  //   if (isChecked) {
-  //     // El checkbox ha sido chequeado, así que incrementa el contador en 1.
-  //     setContador(contador + 1);
-  //   } else {
-  //     // El checkbox ha sido deschequeado, así que decrementa el contador en 1.
-  //     setContador(contador - 1);
-  //   }
-  // };
+    if (isChecked) {
+      // El checkbox ha sido chequeado, así que incrementa el contador en 1.
+      setContador(contador + 1);
+    } else {
+      // El checkbox ha sido deschequeado, así que decrementa el contador en 1.
+      setContador(contador - 1);
+    }
+  };
+
+  const handleApproved = (event) => {
+    const checkbox = event.target;
+    const isChecked = checkbox.checked;
+
+    if (isChecked) {
+      // El checkbox ha sido chequeado, así que incrementa el contador en 1.
+      setContador(contador + 1);
+    } else {
+      // El checkbox ha sido deschequeado, así que decrementa el contador en 1.
+      setContador(contador - 1);
+    }
+  };
 
   // Handle submit
   const handleSubmit = async (event) => {
@@ -33,22 +45,44 @@ export default function FormPlayerModalEdit(props) {
 
     // Data Object
     const formDataObj = {
-      full_name: formData.get("full_name"),
-      genre: formData.get("genre"),
-      phone_number: formData.get("phone_number"),
-      email: formData.get("email"),
-      dni: formData.get("dni"),
-      nacionality: formData.get("nacionality"),
-      born_country: formData.get("born_country"),
-      address: formData.get("address"),
-      residence_country: formData.get("residence_country"),
-      state: formData.get("state"),
-      city: formData.get("city"),
-      height: formData.get("height"),
-      position: formData.get("position"),
-      hand: formData.get("hand"),
-      middle_body: formData.get("middle_body"),
-      full_body: formData.get("full_body"),
+      // Player name
+      player_name: formData.get("player_name"),
+      // Player genre
+      player_genre: formData.get("player_genre"),
+      // Player DNI
+      player_dni: formData.get("player_dni"),
+      // Player profile picture
+      player_picture_profile: formData.get("player_picture_profile"),
+      // Player phone number
+      player_phone_number: formData.get("player_phone_number"),
+      // Player email
+      player_email: formData.get("player_email"),
+      // Player nationality
+      player_nacionality: formData.get("player_nacionality"),
+      // Player country of birth
+      player_born_country: formData.get("player_born_country"),
+      // Player address
+      player_address: formData.get("player_address"),
+      // Player country of residence
+      player_residence_country: formData.get("player_residence_country"),
+      // Player state
+      player_state: formData.get("player_state"),
+      // Player city
+      player_city: formData.get("player_city"),
+      // Player middle body photo
+      player_middle_body: formData.get("player_middle_body"),
+      // Player full body photo
+      player_full_body: formData.get("player_full_body"),
+      // Player height
+      player_height: formData.get("player_height"),
+      // Player hand
+      player_hand: formData.get("player_hand"),
+      // Player position
+      player_position: formData.get("player_position"),
+      // Player approval status
+      player_approved: formData.get("player_approved"),
+      // Player active status
+      player_active: formData.get("player_active"),
     };
     console.log(formDataObj);
     handleClose();
@@ -119,14 +153,14 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* Fullname */}
-                    <Form.Group className="mb-3" controlId="full_name">
+                    <Form.Group className="mb-3" controlId="player_name">
                       <Form.Label>
                         Nombre completo{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="full_name"
+                        name="player_name"
                         placeholder="Pedro Celedon Martinez Gomez"
                         onInvalid={handleInputChange}
                         onInput={(e) => e.target.setCustomValidity("")}
@@ -137,12 +171,12 @@ export default function FormPlayerModalEdit(props) {
 
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* Genre */}
-                    <Form.Group className="mb-3" controlId="genre">
+                    <Form.Group className="mb-3" controlId="player_genre">
                       <Form.Label>
                         Genero <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Select
-                        name="genre"
+                        name="player_genre"
                         required
                         onChange={handleInputChange}
                         onInvalid={(e) => e.target.setCustomValidity("")}
@@ -158,14 +192,17 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   {/* Phone number */}
                   <Col xl={6} lg={6} xs={12} md={12}>
-                    <Form.Group className="mb-3" controlId="phone_number">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="player_phone_number"
+                    >
                       <Form.Label>
                         Numero de teléfono{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="phone_number"
+                        name="player_phone_number"
                         placeholder="0424-555-5555"
                         required
                         onInvalid={handleInputChange}
@@ -175,13 +212,13 @@ export default function FormPlayerModalEdit(props) {
                   </Col>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* Email */}
-                    <Form.Group className="mb-3" controlId="email">
+                    <Form.Group className="mb-3" controlId="player_email">
                       <Form.Label>
                         Correo <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="email"
-                        name="email"
+                        name="player_email"
                         placeholder="pedroceledon@gmail.com"
                         required
                         onInvalid={handleInputChange}
@@ -193,14 +230,14 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # DNI */}
-                    <Form.Group className="mb-3" controlId="dni">
+                    <Form.Group className="mb-3" controlId="player_dni">
                       <Form.Label>
                         Documento legal{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="dni"
+                        name="player_dni"
                         placeholder="Documento legal"
                         required
                         onInvalid={handleInputChange}
@@ -210,13 +247,13 @@ export default function FormPlayerModalEdit(props) {
                   </Col>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Nacionality */}
-                    <Form.Group className="mb-3" controlId="nacionality">
+                    <Form.Group className="mb-3" controlId="player_nacionality">
                       <Form.Label>
                         Nacionalidad <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         as="select"
-                        name="nacionality"
+                        name="player_nacionality"
                         required
                         onChange={handleInputChange}
                       >
@@ -233,14 +270,17 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Born country */}
-                    <Form.Group className="mb-3" controlId="born_country">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="player_born_country"
+                    >
                       <Form.Label>
                         Pais de nacimiento{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="born_country"
+                        name="player_born_country"
                         placeholder="España"
                         required
                         onInvalid={handleInputChange}
@@ -251,13 +291,13 @@ export default function FormPlayerModalEdit(props) {
 
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Address */}
-                    <Form.Group className="mb-3" controlId="address">
+                    <Form.Group className="mb-3" controlId="player_address">
                       <Form.Label>
                         Dirección <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="address"
+                        name="player_address"
                         placeholder="AV. 5 de Julio, Edif. 5 de Julio, Piso 5, Apto 5"
                         required
                         onInvalid={handleInputChange}
@@ -269,14 +309,17 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Residence country */}
-                    <Form.Group className="mb-3" controlId="residence_country">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="player_residence_country"
+                    >
                       <Form.Label>
                         Pais de residencia{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="residence_country"
+                        name="player_residence_country"
                         placeholder="Inglaterra"
                         required
                         onInvalid={handleInputChange}
@@ -286,14 +329,14 @@ export default function FormPlayerModalEdit(props) {
                   </Col>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # State */}
-                    <Form.Group className="mb-3" controlId="state">
+                    <Form.Group className="mb-3" controlId="player_state">
                       <Form.Label>
                         Pais de residencia{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="state"
+                        name="player_state"
                         placeholder="Provincia de barcelona"
                         required
                         onInvalid={handleInputChange}
@@ -305,13 +348,13 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # City */}
-                    <Form.Group className="mb-3" controlId="city">
+                    <Form.Group className="mb-3" controlId="player_city">
                       <Form.Label>
                         Ciudad <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="city"
+                        name="player_city"
                         placeholder="Barcelona"
                         required
                         onInvalid={handleInputChange}
@@ -321,13 +364,13 @@ export default function FormPlayerModalEdit(props) {
                   </Col>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Height */}
-                    <Form.Group className="mb-3" controlId="height">
+                    <Form.Group className="mb-3" controlId="player_height">
                       <Form.Label>
                         Altura <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="text"
-                        name="height"
+                        name="player_height"
                         placeholder="130cm"
                         required
                         onInvalid={handleInputChange}
@@ -339,13 +382,13 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Position */}
-                    <Form.Group className="mb-3" controlId="position">
+                    <Form.Group className="mb-3" controlId="player_position">
                       <Form.Label>
                         Posición <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         as="select"
-                        name="position"
+                        name="player_position"
                         required
                         onChange={handleInputChange}
                       >
@@ -358,14 +401,14 @@ export default function FormPlayerModalEdit(props) {
 
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Hand */}
-                    <Form.Group className="mb-3" controlId="hand">
+                    <Form.Group className="mb-3" controlId="player_hand">
                       <Form.Label>
                         Mano preferida{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         as="select"
-                        name="hand"
+                        name="player_hand"
                         required
                         onChange={handleInputChange}
                       >
@@ -380,14 +423,14 @@ export default function FormPlayerModalEdit(props) {
                 <Row>
                   <Col xl={6} lg={6} xs={12} md={12}>
                     {/* # Middle-body photo */}
-                    <Form.Group className="mb-3" controlId="middle_body">
+                    <Form.Group className="mb-3" controlId="player_middle_body">
                       <Form.Label>
                         Foto medio cuerpo{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="file"
-                        name="middle_body"
+                        name="player_middle_body"
                         accept="image/*"
                         required
                         onInvalid={handleInputChange}
@@ -396,14 +439,14 @@ export default function FormPlayerModalEdit(props) {
                     </Form.Group>
                   </Col>
                   <Col xl={6} lg={6} xs={12} md={12}>
-                    <Form.Group className="mb-3" controlId="full_body">
+                    <Form.Group className="mb-3" controlId="player_full_body">
                       <Form.Label>
                         Foto cuerpo completo{" "}
                         <span style={{ color: "#FF0000" }}>*</span>
                       </Form.Label>
                       <Form.Control
                         type="file"
-                        name="full_body"
+                        name="player_full_body"
                         accept="image/*"
                         required
                         onInvalid={handleInputChange}
@@ -412,12 +455,56 @@ export default function FormPlayerModalEdit(props) {
                     </Form.Group>
                   </Col>
                 </Row>
-
+                <Row>
+                  <Col xl={3} lg={3} xs={3} md={3}>
+                    {/* Active */}
+                    <Form.Group
+                      className="mb-3 d-flex"
+                      controlId="player_active"
+                      name="player_active"
+                    >
+                      <Form.Check
+                        type="checkbox"
+                        id="player_active"
+                        name="player_active"
+                        value="0"
+                        className="mx-2"
+                        onChange={handleActive}
+                      >
+                        <Form.Check.Input type="checkbox" name="active" />
+                        <Form.Check.Label>Jugador Activo</Form.Check.Label>
+                      </Form.Check>
+                    </Form.Group>
+                  </Col>
+                  <Col xl={3} lg={3} xs={3} md={3}>
+                    {/* Approved */}
+                    <Form.Group
+                      className="mb-3 d-flex"
+                      controlId="player_approved"
+                      name="player_approved"
+                    >
+                      <Form.Check
+                        type="checkbox"
+                        id="player_approved"
+                        name="player_approved"
+                        value="0"
+                        className="mx-2"
+                        onChange={handleApproved}
+                      >
+                        <Form.Check.Input
+                          type="checkbox"
+                          name="player_approved"
+                        />
+                        <Form.Check.Label>Jugador Aprovado</Form.Check.Label>
+                      </Form.Check>
+                    </Form.Group>
+                  </Col>
+                </Row>
                 {/* Button */}
                 <Row>
                   <Col xl={4} lg={4} md={4} sm={12} xs={12}>
                     <Button variant="dark" type="submit" className="text-white">
-                      Editar Jugador
+                      Crear Jugador
                     </Button>
                   </Col>
                 </Row>
